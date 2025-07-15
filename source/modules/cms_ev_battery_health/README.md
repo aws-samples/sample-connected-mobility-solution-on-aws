@@ -201,9 +201,9 @@ Follow the instructions for Step 1 and Step 2 in the AWS IAM Identity Center
 ## Customizing the Solution
 
 1. Customizing the dashboard: add/remove panels in the `create_ev_battery_health_dashboard`
-function [here](./source/handlers/custom_resource/lib/dashboards.py)
+function [here](./source/handlers/custom_resource/function/lib/dashboards.py)
 1. Customizing the alerts: add/remove alert rules in the `create_ev_battery_health_alert_rule_group`
-function [here](./source/handlers/custom_resource/lib/alerts.py)
+function [here](./source/handlers/custom_resource/function/lib/alerts.py)
 
 ## Securing the Solution
 
