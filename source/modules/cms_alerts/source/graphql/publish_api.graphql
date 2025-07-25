@@ -10,7 +10,6 @@ enum STATUS {
 
 enum AlarmType {
   VEHICLE_ALARM
-  EV_BATTERY_HEALTH_ALARM
 }
 
 type Response {

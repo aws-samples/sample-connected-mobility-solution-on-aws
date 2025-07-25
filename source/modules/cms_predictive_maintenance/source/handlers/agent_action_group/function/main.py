@@ -42,10 +42,10 @@ def get_csv_object_from_s3(bucket_name: str, object_key: str) -> List[List[Any]]
 
 
 @app.get(
-    "/vehicle_maintenance_status",
+    "/maintenance_status",
     description="Gets the maintenance status of a vehicle with a given VIN.",
 )
-def get_vehicle_maintenance_status(
+def get_maintenance_status(
     vin: Annotated[
         str, Query(max_length=20, strict=True, description="Vehicle VIN number.")
     ],

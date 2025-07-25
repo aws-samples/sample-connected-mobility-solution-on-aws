@@ -10,11 +10,11 @@
         }
     ],
     "paths": {
-        "/vehicle_maintenance_status": {
+        "/maintenance_status": {
             "get": {
-                "summary": "GET /vehicle_maintenance_status",
+                "summary": "GET /maintenance_status",
                 "description": "Gets the maintenance status of a vehicle with a given VIN.",
-                "operationId": "get_vehicle_maintenance_status_vehicle_maintenance_status_get",
+                "operationId": "get_maintenance_status",
                 "parameters": [
                     {
                         "description": "Vehicle VIN number.",

@@ -10,15 +10,16 @@ cms_common = {path = "./../../lib", editable = true}
 
 [dev-packages]
 aws-cdk-lib = ">=2.176.0"
+botocore = ">=1.37.0"
 boto3 = ">=1.37.0"
 boto3-stubs = {extras = ["essential", "ssm"], version = ">=1.37.0"}
-cdk-nag = "*"
+cdk-nag = ">=2.35.55"
+constructs = ">=10.4.2"
 freezegun = "*"
 mkdocs-techdocs-core = "*"
 moto = {extras = ["all"], version = ">=5.0.27"}
 mypy = "*"
 pre-commit = "*"
-pycln = "*"
 pylint = "*"
 pytest = "*"
 pytest-cov = "*"
@@ -26,16 +27,10 @@ pytest-mock = "*"
 requests = "*"
 setuptools = ">=78.1.1"
 syrupy = "*"
-toml = "*"
 types-boto3 = "*"
-types-pyyaml = "*"
 types-requests = ">=2.32.4"
 types-setuptools = "*"
-types-urllib3 = "*"
-types-toml = "*"
-urllib3 = ">=2.5.0"
 wheel = "*"
-wrapt = "*"
 
 [requires]
 python_version = "3.12"

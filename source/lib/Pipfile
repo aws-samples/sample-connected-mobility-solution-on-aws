@@ -8,33 +8,26 @@ aws-lambda-powertools = {extras=["tracer", "validation"], version=">=3.7.0"}
 cattrs = ">=22.1.0"
 
 [dev-packages]
+attrs = ">=25.3.0"
 aws-cdk-lib = ">=2.176.0"
+constructs = ">=10.4.2"
+botocore = ">=1.37.0"
 boto3 = ">=1.37.0"
 boto3-stubs = {extras = ["essential", "secretsmanager", "ssm"], version = ">=1.37.0"}
-cdk-nag = "*"
+jsii = "*"
 moto = {extras = ["all"], version = ">=5.0.27"}
 mypy = "*"
-pipenv-setup = "==3.2.0" # unmaintained, only used in cms_common Makefile target for manually syncing setup.py and Pipfile.lock
 pre-commit = "*"
-pycln = "*"
 pylint = "*"
 pytest = "*"
 pytest-cov = "*"
 pytest-mock = "*"
-requests = "*"
 setuptools = ">=78.1.1"
 syrupy = "*"
-toml = "*"
 types-boto3 = ">=1.37.0"
-types-pyyaml = "*"
 types-requests = ">=2.32.4"
 types-setuptools = "*"
-types-urllib3 = "*"
-types-toml = "*"
-vistir = "==0.6.1" # Necessary for resolving a `vistir` version conflict with `pipenv-setup`
-urllib3 = ">=2.5.0"
 wheel = "*"
-wrapt = "*"
 
 [requires]
 python_version = "3.12"

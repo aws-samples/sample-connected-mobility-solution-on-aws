@@ -52,7 +52,7 @@ setup(
         "toml>=0.10.2",
     ],
     name="cms_common",
-    version="2.1.5",
+    version="2.1.6",
     description="Common library used in CMS modules",
     packages=find_packages(
         exclude=[
@@ -67,10 +67,10 @@ setup(
     classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
-        "License :: OSI Approved :: Apache Software License",
         "Programming Language :: JavaScript",
         "Programming Language :: Python :: 3 :: Only",
         "Programming Language :: Python :: 3.12",
         "Typing :: Typed",
     ],
+    license="Apache-2.0",
 )

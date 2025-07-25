@@ -255,7 +255,7 @@ class SageMakerPipelineConstruct(Construct):
                                 "logs:PutResourcePolicy",
                                 "logs:UpdateLogDelivery",
                             ],
-                            resources=["*"],
+                            resources=["*"],  # NOSONAR
                         )
                     ],
                 ),
@@ -281,7 +281,7 @@ class SageMakerPipelineConstruct(Construct):
                                 "ecr:GetAuthorizationToken",
                                 "ecr:GetDownloadUrlForLayer",
                             ],
-                            resources=["*"],
+                            resources=["*"],  # NOSONAR
                         )
                     ],
                 ),

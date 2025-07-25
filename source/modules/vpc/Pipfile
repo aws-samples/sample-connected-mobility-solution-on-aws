@@ -6,12 +6,8 @@ name = "pypi"
 [packages]
 
 [dev-packages]
-cdk-nag = "*"
 mkdocs-techdocs-core = "*"
 pre-commit = "*"
-pyyaml = "*"
-types-pyyaml = "*"
-urllib3 = ">=2.5.0"
 
 [requires]
 python_version = "3.12"

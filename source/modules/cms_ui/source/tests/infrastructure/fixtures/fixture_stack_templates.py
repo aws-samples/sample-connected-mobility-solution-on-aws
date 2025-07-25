@@ -64,7 +64,7 @@ def fixture_cms_ui_stack_template() -> aws_cdk.assertions.Template:
         app = aws_cdk.App()
         stack = CmsUIStack(
             app,
-            "cms-fleetwise-connector",
+            "cms-ui",
             s3_asset_config_inputs=s3_asset_config,
             solution_config_inputs=solution_config_inputs,
         )
