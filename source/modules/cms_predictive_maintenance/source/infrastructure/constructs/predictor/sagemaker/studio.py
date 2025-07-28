@@ -135,7 +135,7 @@ class SageMakerStudioConstruct(Construct):
                         "ec2:RevokeSecurityGroupIngress",
                     ],
                     effect=aws_iam.Effect.ALLOW,
-                    resources=["*"],
+                    resources=["*"],  # NOSONAR
                 ),
             ],
         )

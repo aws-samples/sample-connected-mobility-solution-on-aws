@@ -37,12 +37,3 @@ deploy: ## Deploy library to pypi - NOT IMPLEMENTED
 .PHONY: destroy
 destroy: ## NOT IMPLEMENTED
 	@printf "%bLibrary does not support destruction.%b" "${MAGENTA}" "${NC}"
-
-.PHONY: pipenv-setup-sync
-pipenv-setup-sync: ## Using pipenv-setup, sync Pipfile.lock and setup.py
-ifeq (, $(shell which pipenv-setup))
-	$(error pipenv-setup is required to sync setup.py. Run `make install` prior to this target.)
-endif
-	pipenv-setup sync --pipfile
-	@printf "%bRunning `black` to format setup.py.%b\n" "${MAGENTA}" "${NC}"
-	-pre-commit run black --files ./setup.py

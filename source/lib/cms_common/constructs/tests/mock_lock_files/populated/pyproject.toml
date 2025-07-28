@@ -1,0 +1,2 @@
+[tool.deptry]
+ignore = ["DEP002", "DEP003"]

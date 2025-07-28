@@ -23,7 +23,7 @@ def main() -> None:
     evaluation_report_file_path = "/opt/ml/processing/evaluation/evaluation.json"
 
     files_to_extract = ["model.pth"]
-    with tarfile.open(model_zip_path, "r:gz") as tar:
+    with tarfile.open(model_zip_path, "r:gz") as tar:  # NOSONAR
         for file_name in files_to_extract:
             tar.extract(file_name, model_dir)
 

@@ -93,7 +93,6 @@ class UserSubscriptionsConstruct(Construct):
                 "ALARM_TYPES": json.dumps(
                     [
                         "VEHICLE_ALARM",
-                        "EV_BATTERY_HEALTH_ALARM",
                     ]
                 ),
                 "SNS_TOPIC_PREFIX": sns_topic_prefix,

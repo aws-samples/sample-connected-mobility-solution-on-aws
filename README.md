@@ -107,8 +107,6 @@ For detailed information visit the modules' README
 - [Auth Setup](./source/modules/auth_setup/README.md)
 - [Connect & Store](./source/modules/cms_connect_store/README.md)
 - [Config](./source/modules/cms_config/README.md)
-- [EV Battery Health](./source/modules/cms_ev_battery_health/README.md)
-- [FleetWise Connector](./source/modules/cms_fleetwise_connector/README.md)
 - [Provisioning](./source/modules/cms_provisioning/README.md)
 - [Vehicle Simulator](./source/modules/cms_vehicle_simulator/README.md)
 - [VPC](./source/modules/vpc/README.md)
@@ -265,7 +263,6 @@ Some of the modules may need certain manual steps. Here is the list of modules w
 Please refer to module READMEs for instructions.
 
 - [ACDP](#create-an-amazon-route-53-hosted-zone)
-- [CMS EV Battery Health](./source/modules/cms_ev_battery_health/README.md/#manual-steps)
 - [CMS Predictive Maintenance](./source/modules/cms_predictive_maintenance/README.md/#manual-steps)
 
 #### Create an Amazon Route 53 Hosted Zone

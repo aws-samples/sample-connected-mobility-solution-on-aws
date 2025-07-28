@@ -4202,7 +4202,7 @@
         "Description": "CMS Alerts User Subscriptions Function",
         "Environment": {
           "Variables": {
-            "ALARM_TYPES": "[\"VEHICLE_ALARM\", \"EV_BATTERY_HEALTH_ALARM\"]",
+            "ALARM_TYPES": "[\"VEHICLE_ALARM\"]",
             "DEPLOYMENT_UUID": {
               "Fn::Join": [
                 "",
