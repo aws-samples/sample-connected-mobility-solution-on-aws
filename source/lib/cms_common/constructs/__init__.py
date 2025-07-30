@@ -3,7 +3,6 @@
 # SPDX-License-Identifier: Apache-2.0
 
 # Connected Mobility Solution on AWS
-from .app_registry import AppRegistryConstruct, AppRegistryInputs
 from .app_unique_id import AppUniqueId
 from .cdk_lambda_vpc_config_construct import CDKLambdasVpcConfigConstruct
 from .custom_resource_lambda import CustomResourceLambdaConstruct

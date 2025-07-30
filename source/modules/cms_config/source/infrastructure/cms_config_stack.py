@@ -8,13 +8,12 @@ from os.path import abspath, dirname
 from typing import Any
 
 # AWS Libraries
-from aws_cdk import ArnFormat, Aws, CfnMapping, Stack, aws_iam
+from aws_cdk import ArnFormat, CfnMapping, Stack, aws_iam
 from constructs import Construct
 
 # CMS Common Library
 from cms_common.config.resource_names import ResourceName, ResourcePrefix
 from cms_common.config.stack_inputs import S3AssetConfigInputs, SolutionConfigInputs
-from cms_common.constructs.app_registry import AppRegistryConstruct, AppRegistryInputs
 from cms_common.constructs.app_unique_id import AppUniqueId
 from cms_common.constructs.cdk_lambda_vpc_config_construct import (
     CDKLambdasVpcConfigConstruct,
@@ -52,18 +51,6 @@ class CmsConfigStack(Stack):
                     "SendAnonymousUsage": "Yes",
                 },
             },
-        )
-
-        AppRegistryConstruct(
-            self,
-            "app-registry-construct",
-            app_registry_inputs=AppRegistryInputs(
-                application_name=Aws.STACK_NAME,
-                application_type=solution_config_inputs.application_type,
-                solution_id=solution_config_inputs.solution_id,
-                solution_name=solution_config_inputs.solution_name,
-                solution_version=solution_config_inputs.solution_version,
-            ),
         )
 
         module_inputs_construct = ModuleInputsConstruct(self, "module-inputs-construct")

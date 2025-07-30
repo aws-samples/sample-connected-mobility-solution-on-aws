@@ -16,6 +16,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - cms_fleetwise_connector
   - cms_sample
 
+- removed `AppRegistry` usage
+
 ### Fixed
 
 - updated various files to remove references to the removed modules.
