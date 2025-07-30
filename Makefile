@@ -35,10 +35,10 @@ $(foreach module,$(MODULES),$(foreach target,$(MODULE_TARGETS),$(eval $(call cre
 ## ========================================================
 ## INVOKE MAKE TARGET FROM EACH MODULES' MAKEFILE
 ## ========================================================
-SubMakefiles    = $(shell find source \( -name deployment -o -name cdk.out -o -name .venv -o -name node_modules -o -path **/backstage/cdk \) -prune -false -o -name Makefile)
+SubMakefiles    = $(shell find source \( -name deployment -o -name cdk.out -o -name .venv -o -name node_modules \) -prune -false -o -name Makefile)
 SubMakeDirs     = $(filter-out ${SOLUTION_PATH},$(dir $(SubMakefiles)))
 Prereqs         = source/modules/vpc/ source/modules/auth_setup/ source/modules/cms_config/ source/modules/cms_auth/ source/modules/cms_connect_store/ source/modules/cms_alerts/ source/modules/cms_api/
-DeployableDirs  = $(filter-out source/lib/ source/modules/backstage source/modules/cms_ui ${Prereqs},${SubMakeDirs})
+DeployableDirs  = $(filter-out source/lib/ source/modules/cms_ui ${Prereqs},${SubMakeDirs})
 
 define run-module-target
 	run_make_with_logging() { \

@@ -26,9 +26,6 @@
       - [1. Cognito Deploy](#1-cognito-deploy)
       - [2. Empty Config Deploy](#2-empty-config-deploy)
       - [3. Existing Config Deploy](#3-existing-config-deploy)
-    - [Integration with ACDP / Backstage](#integration-with-acdp--backstage)
-      - [Callback URIs](#callback-uris)
-      - [Scopes](#scopes)
     - [Secret Structure](#secret-structure)
       - [IdP Config](#idp-config)
       - [User Client Config](#user-client-config)
@@ -43,9 +40,8 @@
 The Auth Setup module supports the following features within CMS:
 
 - Create IdP configuration for CMS Auth module's Token Validation and Authorization Code Exchange lambda functions
-- Create IdP configuration for Users to login to the Backstage module
 - Create IdP configuration for CMS modules to perform service-to-service auth via the Client Credentials flow
-- Provide an optional deployment of Cognito infrastructure compatible with Backstage, and populate the IdP configurations
+- Provide an optional deployment of Cognito infrastructure, and populate the IdP configurations
   appropriately
 
 These features are accomplished primarily via three AWS Secrets Manager secrets, which provide configuration structure
@@ -199,26 +195,6 @@ appropriate values that you would like to reuse, the Auth Setup module will conn
 expected by other CMS module's. This can be done for any or all of the three configuration secrets. To execute this deployment,
 deploy the module with the CloudFormation parameter `ShouldCreateCognitoResources` set to "False", and provide an existing
 secret arn for any of the three existing secret arn CloudFormation parameters.
-
-### Integration with ACDP / Backstage
-
-#### Callback URIs
-
-If you would like to use the Auth Setup module for authenticating logins to the Backstage portal deployed by ACDP, it is
-necessary to include the appropriate Backstage Callback URI in your identity provider's user client. This Callback Uri
-is defined as '<https://your-backstage-domain/api/auth/provider-id/handler/frame>'. See the backstage docs for more info:
-<https://backstage.io/docs/auth/oidc#the-configuration>.
-
-This value is added by default to the Cognito user app client when deploying Cognito infrastructure, and when deploying via
-the Makefile `make deploy` target, by using the `FULLY_QUALIFIED_DOMAIN_NAME` environment variable (this is the same variable
-used to set the Backstage domain during an ACDP / Backstage deploy). Otherwise, you must configure the Callback URIs for
-your identity provider client manually to facilitate the Backstage login redirect.
-
-#### Scopes
-
-To allow login to Backstage, the IdP must be configured to allow the following three scopes: openid, email,
-profile. Without these scopes, Backstage will fail to authenticate users on login. This can be adjusted from the Backstage
-source code if desired.
 
 ### Secret Structure
 

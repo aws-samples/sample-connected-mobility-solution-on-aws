@@ -159,22 +159,6 @@ repos:
   # Module pre-commits: https://github.com/pre-commit/pre-commit/issues/731#issuecomment-376945745
   - repo: local
     hooks:
-      - id: acdp
-        name: (ACDP)
-        language: script
-        args: ["--module-path", "source/modules/acdp", "--files-list"]
-        entry: ./deployment/script_run_module_hooks.py
-        files: ^source/modules/acdp
-        verbose: true
-        require_serial: true
-      - id: backstage
-        name: (Backstage)
-        language: script
-        args: ["--module-path", "source/modules/backstage", "--files-list"]
-        entry: ./deployment/script_run_module_hooks.py
-        files: ^source/modules/backstage
-        verbose: true
-        require_serial: true
       - id: cms-alerts
         name: (Alerts)
         language: script
@@ -215,28 +199,12 @@ repos:
         files: ^source/modules/cms_connect_store
         verbose: true
         require_serial: true
-      - id: cms-ev-battery-health
-        name: (EV Battery Health)
-        language: script
-        args: ["--module-path", "source/modules/cms_ev_battery_health", "--files-list"]
-        entry: ./deployment/script_run_module_hooks.py
-        files: ^source/modules/cms_ev_battery_health
-        verbose: true
-        require_serial: true
       - id: cms-provisioning
         name: (Provisioning)
         language: script
         args: ["--module-path", "source/modules/cms_provisioning", "--files-list"]
         entry: ./deployment/script_run_module_hooks.py
         files: ^source/modules/cms_provisioning
-        verbose: true
-        require_serial: true
-      - id: cms-sample
-        name: (Sample)
-        language: script
-        args: ["--module-path", "source/modules/cms_sample", "--files-list"]
-        entry: ./deployment/script_run_module_hooks.py
-        files: ^source/modules/cms_sample
         verbose: true
         require_serial: true
       - id: cms-auth
@@ -253,14 +221,6 @@ repos:
         args: ["--module-path", "source/modules/cms_vehicle_simulator", "--files-list"]
         entry: ./deployment/script_run_module_hooks.py
         files: ^source/modules/cms_vehicle_simulator
-        verbose: true
-        require_serial: true
-      - id: cms-fleetwise-connector
-        name: (FleetWise Connector)
-        language: script
-        args: ["--module-path", "source/modules/cms_fleetwise_connector", "--files-list"]
-        entry: ./deployment/script_run_module_hooks.py
-        files: ^source/modules/cms_fleetwise_connector
         verbose: true
         require_serial: true
       - id: auth-setup

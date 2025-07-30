@@ -35,8 +35,7 @@
 
 ## Solution Overview
 
-CMS Predictive Maintenance is a practical example for implementing a new module within CMS on AWS. This module contains
-the necessary files for configuring a CMS on AWS module to be deployed via CMS Backstage. Compare the CMS
+CMS Predictive Maintenance is a practical example for implementing a new module within CMS on AWS. Compare the CMS
 Predictive Maintenance module file structure and files against existing CMS on AWS modules for a better idea of how to
 customize the CMS Predictive Maintenance module for your own usage.
 
