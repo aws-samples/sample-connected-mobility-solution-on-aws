@@ -67,20 +67,6 @@ class CmsPredictiveMaintenanceStack(Stack):
             },
         )
 
-        # NOTE: AppRegistryConstruct is commented out now because the tag added by this construct is
-        # exceeding the length limit of tags supported by the aws_sagemaker.CfnDomain resource.
-        # AppRegistryConstruct(
-        #     self,
-        #     "app-registry-construct",
-        #     app_registry_inputs=AppRegistryInputs(
-        #         application_name=Aws.STACK_NAME,
-        #         application_type=solution_config_inputs.application_type,
-        #         solution_id=solution_config_inputs.solution_id,
-        #         solution_name=solution_config_inputs.solution_name,
-        #         solution_version=solution_config_inputs.solution_version,
-        #     ),
-        # )
-
         module_inputs_construct = ModuleInputsConstruct(self, "module-inputs-construct")
         app_unique_id = module_inputs_construct.app_unique_id
 

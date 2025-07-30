@@ -335,13 +335,7 @@
               ]
             ]
           },
-          "aws-chalice": "version=1.32.0:stage=cms-vehicle-simulator-stack/cms-vehicle-simulator/vs-api-construct:app=vs_api",
-          "awsApplication": {
-            "Fn::GetAtt": [
-              "appregistryconstructappregistryapplicationAC1A319B",
-              "ApplicationTagValue"
-            ]
-          }
+          "aws-chalice": "version=1.32.0:stage=cms-vehicle-simulator-stack/cms-vehicle-simulator/vs-api-construct:app=vs_api"
         },
         "Timeout": 60,
         "Tracing": "PassThrough",
@@ -440,17 +434,6 @@
             "value"
           ]
         },
-        "Tags": [
-          {
-            "Key": "awsApplication",
-            "Value": {
-              "Fn::GetAtt": [
-                "appregistryconstructappregistryapplicationAC1A319B",
-                "ApplicationTagValue"
-              ]
-            }
-          }
-        ],
         "Timeout": 120,
         "VpcConfig": {
           "SecurityGroupIds": [
@@ -505,17 +488,6 @@
             "CidrIp": "0.0.0.0/0",
             "Description": "Allow all outbound traffic by default",
             "IpProtocol": "-1"
-          }
-        ],
-        "Tags": [
-          {
-            "Key": "awsApplication",
-            "Value": {
-              "Fn::GetAtt": [
-                "appregistryconstructappregistryapplicationAC1A319B",
-                "ApplicationTagValue"
-              ]
-            }
           }
         ],
         "VpcId": {
@@ -575,17 +547,6 @@
               ]
             ]
           }
-        ],
-        "Tags": [
-          {
-            "Key": "awsApplication",
-            "Value": {
-              "Fn::GetAtt": [
-                "appregistryconstructappregistryapplicationAC1A319B",
-                "ApplicationTagValue"
-              ]
-            }
-          }
         ]
       },
       "Type": "AWS::IAM::Role"
@@ -621,17 +582,6 @@
           ]
         },
         "Runtime": "python3.11",
-        "Tags": [
-          {
-            "Key": "awsApplication",
-            "Value": {
-              "Fn::GetAtt": [
-                "appregistryconstructappregistryapplicationAC1A319B",
-                "ApplicationTagValue"
-              ]
-            }
-          }
-        ],
         "Timeout": 900,
         "VpcConfig": {
           "SecurityGroupIds": [
@@ -686,17 +636,6 @@
             "CidrIp": "0.0.0.0/0",
             "Description": "Allow all outbound traffic by default",
             "IpProtocol": "-1"
-          }
-        ],
-        "Tags": [
-          {
-            "Key": "awsApplication",
-            "Value": {
-              "Fn::GetAtt": [
-                "appregistryconstructappregistryapplicationAC1A319B",
-                "ApplicationTagValue"
-              ]
-            }
           }
         ],
         "VpcId": {
@@ -755,17 +694,6 @@
                 ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
               ]
             ]
-          }
-        ],
-        "Tags": [
-          {
-            "Key": "awsApplication",
-            "Value": {
-              "Fn::GetAtt": [
-                "appregistryconstructappregistryapplicationAC1A319B",
-                "ApplicationTagValue"
-              ]
-            }
           }
         ]
       },
@@ -893,17 +821,6 @@
             "value"
           ]
         },
-        "Tags": [
-          {
-            "Key": "awsApplication",
-            "Value": {
-              "Fn::GetAtt": [
-                "appregistryconstructappregistryapplicationAC1A319B",
-                "ApplicationTagValue"
-              ]
-            }
-          }
-        ],
         "Timeout": 900
       },
       "Type": "AWS::Lambda::Function"
@@ -934,17 +851,6 @@
                 ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
               ]
             ]
-          }
-        ],
-        "Tags": [
-          {
-            "Key": "awsApplication",
-            "Value": {
-              "Fn::GetAtt": [
-                "appregistryconstructappregistryapplicationAC1A319B",
-                "ApplicationTagValue"
-              ]
-            }
           }
         ]
       },
@@ -2126,94 +2032,10 @@
                 "/config/deployment-uuid}}"
               ]
             ]
-          },
-          "awsApplication": {
-            "Fn::GetAtt": [
-              "appregistryconstructappregistryapplicationAC1A319B",
-              "ApplicationTagValue"
-            ]
           }
         }
       },
       "Type": "AWS::Serverless::Api"
-    },
-    "appregistryconstructappregistryapplicationAC1A319B": {
-      "Properties": {
-        "Name": {
-          "Fn::Join": [
-            "",
-            [
-              {
-                "Ref": "AWS::StackName"
-              },
-              "-",
-              {
-                "Ref": "AWS::Region"
-              },
-              "-",
-              {
-                "Ref": "AWS::AccountId"
-              }
-            ]
-          ]
-        }
-      },
-      "Type": "AWS::ServiceCatalogAppRegistry::Application"
-    },
-    "appregistryconstructappregistryapplicationattributeassociation802A10B5": {
-      "Properties": {
-        "Application": {
-          "Fn::GetAtt": [
-            "appregistryconstructappregistryapplicationAC1A319B",
-            "Id"
-          ]
-        },
-        "AttributeGroup": {
-          "Fn::GetAtt": [
-            "appregistryconstructdefaultapplicationattributes8FF6B3DB",
-            "Id"
-          ]
-        }
-      },
-      "Type": "AWS::ServiceCatalogAppRegistry::AttributeGroupAssociation"
-    },
-    "appregistryconstructdefaultapplicationattributes8FF6B3DB": {
-      "Properties": {
-        "Attributes": {
-          "ApplicationType": "test-application-type",
-          "SolutionID": "test-solution-id",
-          "SolutionName": "test-solution-name",
-          "Version": "test-solution-version"
-        },
-        "Description": "Attribute group for solution information",
-        "Name": {
-          "Fn::Join": [
-            "",
-            [
-              {
-                "Ref": "AWS::StackName"
-              },
-              "-",
-              {
-                "Ref": "AWS::Region"
-              },
-              "-",
-              {
-                "Ref": "AWS::AccountId"
-              }
-            ]
-          ]
-        },
-        "Tags": {
-          "awsApplication": {
-            "Fn::GetAtt": [
-              "appregistryconstructappregistryapplicationAC1A319B",
-              "ApplicationTagValue"
-            ]
-          }
-        }
-      },
-      "Type": "AWS::ServiceCatalogAppRegistry::AttributeGroup"
     },
     "cmsvehiclesimulatorcdklambdasvpcconstructsecuritygroupE8006040": {
       "DependsOn": [
@@ -2229,15 +2051,6 @@
           }
         ],
         "Tags": [
-          {
-            "Key": "awsApplication",
-            "Value": {
-              "Fn::GetAtt": [
-                "appregistryconstructappregistryapplicationAC1A319B",
-                "ApplicationTagValue"
-              ]
-            }
-          },
           {
             "Key": "Solutions:DeploymentUUID",
             "Value": {
@@ -2345,15 +2158,6 @@
           ]
         },
         "Tags": [
-          {
-            "Key": "awsApplication",
-            "Value": {
-              "Fn::GetAtt": [
-                "appregistryconstructappregistryapplicationAC1A319B",
-                "ApplicationTagValue"
-              ]
-            }
-          },
           {
             "Key": "Solutions:DeploymentUUID",
             "Value": {
@@ -2511,15 +2315,6 @@
           "RestrictPublicBuckets": true
         },
         "Tags": [
-          {
-            "Key": "awsApplication",
-            "Value": {
-              "Fn::GetAtt": [
-                "appregistryconstructappregistryapplicationAC1A319B",
-                "ApplicationTagValue"
-              ]
-            }
-          },
           {
             "Key": "Solutions:DeploymentUUID",
             "Value": {
@@ -2727,15 +2522,6 @@
         },
         "Tags": [
           {
-            "Key": "awsApplication",
-            "Value": {
-              "Fn::GetAtt": [
-                "appregistryconstructappregistryapplicationAC1A319B",
-                "ApplicationTagValue"
-              ]
-            }
-          },
-          {
             "Key": "Solutions:DeploymentUUID",
             "Value": {
               "Fn::Join": [
@@ -2836,15 +2622,6 @@
           "RestrictPublicBuckets": true
         },
         "Tags": [
-          {
-            "Key": "awsApplication",
-            "Value": {
-              "Fn::GetAtt": [
-                "appregistryconstructappregistryapplicationAC1A319B",
-                "ApplicationTagValue"
-              ]
-            }
-          },
           {
             "Key": "Solutions:DeploymentUUID",
             "Value": {
@@ -3044,15 +2821,6 @@
         ],
         "IdentityPoolTags": [
           {
-            "Key": "awsApplication",
-            "Value": {
-              "Fn::GetAtt": [
-                "appregistryconstructappregistryapplicationAC1A319B",
-                "ApplicationTagValue"
-              ]
-            }
-          },
-          {
             "Key": "Solutions:DeploymentUUID",
             "Value": {
               "Fn::Join": [
@@ -3147,12 +2915,6 @@
                 },
                 "/config/deployment-uuid}}"
               ]
-            ]
-          },
-          "awsApplication": {
-            "Fn::GetAtt": [
-              "appregistryconstructappregistryapplicationAC1A319B",
-              "ApplicationTagValue"
             ]
           }
         },
@@ -3793,15 +3555,6 @@
         ],
         "Tags": [
           {
-            "Key": "awsApplication",
-            "Value": {
-              "Fn::GetAtt": [
-                "appregistryconstructappregistryapplicationAC1A319B",
-                "ApplicationTagValue"
-              ]
-            }
-          },
-          {
             "Key": "Solutions:DeploymentUUID",
             "Value": {
               "Fn::Join": [
@@ -3870,15 +3623,6 @@
         "PricingPlan": "RequestBasedUsage",
         "Tags": [
           {
-            "Key": "awsApplication",
-            "Value": {
-              "Fn::GetAtt": [
-                "appregistryconstructappregistryapplicationAC1A319B",
-                "ApplicationTagValue"
-              ]
-            }
-          },
-          {
             "Key": "Solutions:DeploymentUUID",
             "Value": {
               "Fn::Join": [
@@ -3925,15 +3669,6 @@
         },
         "PricingPlan": "RequestBasedUsage",
         "Tags": [
-          {
-            "Key": "awsApplication",
-            "Value": {
-              "Fn::GetAtt": [
-                "appregistryconstructappregistryapplicationAC1A319B",
-                "ApplicationTagValue"
-              ]
-            }
-          },
           {
             "Key": "Solutions:DeploymentUUID",
             "Value": {
@@ -4037,15 +3772,6 @@
         },
         "Tags": [
           {
-            "Key": "awsApplication",
-            "Value": {
-              "Fn::GetAtt": [
-                "appregistryconstructappregistryapplicationAC1A319B",
-                "ApplicationTagValue"
-              ]
-            }
-          },
-          {
             "Key": "Solutions:DeploymentUUID",
             "Value": {
               "Fn::Join": [
@@ -4107,15 +3833,6 @@
         },
         "Runtime": "python3.12",
         "Tags": [
-          {
-            "Key": "awsApplication",
-            "Value": {
-              "Fn::GetAtt": [
-                "appregistryconstructappregistryapplicationAC1A319B",
-                "ApplicationTagValue"
-              ]
-            }
-          },
           {
             "Key": "Solutions:DeploymentUUID",
             "Value": {
@@ -4415,15 +4132,6 @@
         ],
         "Tags": [
           {
-            "Key": "awsApplication",
-            "Value": {
-              "Fn::GetAtt": [
-                "appregistryconstructappregistryapplicationAC1A319B",
-                "ApplicationTagValue"
-              ]
-            }
-          },
-          {
             "Key": "Solutions:DeploymentUUID",
             "Value": {
               "Fn::Join": [
@@ -4456,15 +4164,6 @@
           }
         ],
         "Tags": [
-          {
-            "Key": "awsApplication",
-            "Value": {
-              "Fn::GetAtt": [
-                "appregistryconstructappregistryapplicationAC1A319B",
-                "ApplicationTagValue"
-              ]
-            }
-          },
           {
             "Key": "Solutions:DeploymentUUID",
             "Value": {
@@ -4577,15 +4276,6 @@
         },
         "Runtime": "python3.12",
         "Tags": [
-          {
-            "Key": "awsApplication",
-            "Value": {
-              "Fn::GetAtt": [
-                "appregistryconstructappregistryapplicationAC1A319B",
-                "ApplicationTagValue"
-              ]
-            }
-          },
           {
             "Key": "Solutions:DeploymentUUID",
             "Value": {
@@ -5002,15 +4692,6 @@
         ],
         "Tags": [
           {
-            "Key": "awsApplication",
-            "Value": {
-              "Fn::GetAtt": [
-                "appregistryconstructappregistryapplicationAC1A319B",
-                "ApplicationTagValue"
-              ]
-            }
-          },
-          {
             "Key": "Solutions:DeploymentUUID",
             "Value": {
               "Fn::Join": [
@@ -5157,15 +4838,6 @@
         },
         "Runtime": "python3.12",
         "Tags": [
-          {
-            "Key": "awsApplication",
-            "Value": {
-              "Fn::GetAtt": [
-                "appregistryconstructappregistryapplicationAC1A319B",
-                "ApplicationTagValue"
-              ]
-            }
-          },
           {
             "Key": "Solutions:DeploymentUUID",
             "Value": {
@@ -5616,15 +5288,6 @@
         ],
         "Tags": [
           {
-            "Key": "awsApplication",
-            "Value": {
-              "Fn::GetAtt": [
-                "appregistryconstructappregistryapplicationAC1A319B",
-                "ApplicationTagValue"
-              ]
-            }
-          },
-          {
             "Key": "Solutions:DeploymentUUID",
             "Value": {
               "Fn::Join": [
@@ -5657,15 +5320,6 @@
           }
         ],
         "Tags": [
-          {
-            "Key": "awsApplication",
-            "Value": {
-              "Fn::GetAtt": [
-                "appregistryconstructappregistryapplicationAC1A319B",
-                "ApplicationTagValue"
-              ]
-            }
-          },
           {
             "Key": "Solutions:DeploymentUUID",
             "Value": {
@@ -5715,15 +5369,6 @@
         ],
         "Tags": [
           {
-            "Key": "awsApplication",
-            "Value": {
-              "Fn::GetAtt": [
-                "appregistryconstructappregistryapplicationAC1A319B",
-                "ApplicationTagValue"
-              ]
-            }
-          },
-          {
             "Key": "Solutions:DeploymentUUID",
             "Value": {
               "Fn::Join": [
@@ -5771,15 +5416,6 @@
           }
         ],
         "Tags": [
-          {
-            "Key": "awsApplication",
-            "Value": {
-              "Fn::GetAtt": [
-                "appregistryconstructappregistryapplicationAC1A319B",
-                "ApplicationTagValue"
-              ]
-            }
-          },
           {
             "Key": "Solutions:DeploymentUUID",
             "Value": {
@@ -5895,15 +5531,6 @@
         },
         "Runtime": "python3.12",
         "Tags": [
-          {
-            "Key": "awsApplication",
-            "Value": {
-              "Fn::GetAtt": [
-                "appregistryconstructappregistryapplicationAC1A319B",
-                "ApplicationTagValue"
-              ]
-            }
-          },
           {
             "Key": "Solutions:DeploymentUUID",
             "Value": {
@@ -6258,15 +5885,6 @@
         ],
         "Tags": [
           {
-            "Key": "awsApplication",
-            "Value": {
-              "Fn::GetAtt": [
-                "appregistryconstructappregistryapplicationAC1A319B",
-                "ApplicationTagValue"
-              ]
-            }
-          },
-          {
             "Key": "Solutions:DeploymentUUID",
             "Value": {
               "Fn::Join": [
@@ -6482,15 +6100,6 @@
         ],
         "Tags": [
           {
-            "Key": "awsApplication",
-            "Value": {
-              "Fn::GetAtt": [
-                "appregistryconstructappregistryapplicationAC1A319B",
-                "ApplicationTagValue"
-              ]
-            }
-          },
-          {
             "Key": "Solutions:DeploymentUUID",
             "Value": {
               "Fn::Join": [
@@ -6654,15 +6263,6 @@
         },
         "Tags": [
           {
-            "Key": "awsApplication",
-            "Value": {
-              "Fn::GetAtt": [
-                "appregistryconstructappregistryapplicationAC1A319B",
-                "ApplicationTagValue"
-              ]
-            }
-          },
-          {
             "Key": "Solutions:DeploymentUUID",
             "Value": {
               "Fn::Join": [
@@ -6715,15 +6315,6 @@
         "RetentionInDays": 90,
         "Tags": [
           {
-            "Key": "awsApplication",
-            "Value": {
-              "Fn::GetAtt": [
-                "appregistryconstructappregistryapplicationAC1A319B",
-                "ApplicationTagValue"
-              ]
-            }
-          },
-          {
             "Key": "Solutions:DeploymentUUID",
             "Value": {
               "Fn::Join": [
@@ -6769,15 +6360,6 @@
           "SSEEnabled": true
         },
         "Tags": [
-          {
-            "Key": "awsApplication",
-            "Value": {
-              "Fn::GetAtt": [
-                "appregistryconstructappregistryapplicationAC1A319B",
-                "ApplicationTagValue"
-              ]
-            }
-          },
           {
             "Key": "Solutions:DeploymentUUID",
             "Value": {
@@ -6825,15 +6407,6 @@
         },
         "Tags": [
           {
-            "Key": "awsApplication",
-            "Value": {
-              "Fn::GetAtt": [
-                "appregistryconstructappregistryapplicationAC1A319B",
-                "ApplicationTagValue"
-              ]
-            }
-          },
-          {
             "Key": "Solutions:DeploymentUUID",
             "Value": {
               "Fn::Join": [
@@ -6880,15 +6453,6 @@
         },
         "Tags": [
           {
-            "Key": "awsApplication",
-            "Value": {
-              "Fn::GetAtt": [
-                "appregistryconstructappregistryapplicationAC1A319B",
-                "ApplicationTagValue"
-              ]
-            }
-          },
-          {
             "Key": "Solutions:DeploymentUUID",
             "Value": {
               "Fn::Join": [
@@ -6922,15 +6486,6 @@
           }
         ],
         "Tags": [
-          {
-            "Key": "awsApplication",
-            "Value": {
-              "Fn::GetAtt": [
-                "appregistryconstructappregistryapplicationAC1A319B",
-                "ApplicationTagValue"
-              ]
-            }
-          },
           {
             "Key": "Solutions:DeploymentUUID",
             "Value": {
@@ -7372,15 +6927,6 @@
         ],
         "Tags": [
           {
-            "Key": "awsApplication",
-            "Value": {
-              "Fn::GetAtt": [
-                "appregistryconstructappregistryapplicationAC1A319B",
-                "ApplicationTagValue"
-              ]
-            }
-          },
-          {
             "Key": "Solutions:DeploymentUUID",
             "Value": {
               "Fn::Join": [
@@ -7407,15 +6953,6 @@
       "Properties": {
         "RetentionInDays": 90,
         "Tags": [
-          {
-            "Key": "awsApplication",
-            "Value": {
-              "Fn::GetAtt": [
-                "appregistryconstructappregistryapplicationAC1A319B",
-                "ApplicationTagValue"
-              ]
-            }
-          },
           {
             "Key": "Solutions:DeploymentUUID",
             "Value": {
@@ -7482,14 +7019,6 @@
               "/test-module-name"
             ]
           ]
-        },
-        "Tags": {
-          "awsApplication": {
-            "Fn::GetAtt": [
-              "appregistryconstructappregistryapplicationAC1A319B",
-              "ApplicationTagValue"
-            ]
-          }
         },
         "Type": "String",
         "Value": {
