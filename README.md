@@ -14,9 +14,6 @@ navigate to the [AWS Solution Page](https://aws.amazon.com/solutions/implementat
   - [Table of Contents](#table-of-contents)
   - [Solution Overview](#solution-overview)
   - [Architecture Diagrams](#architecture-diagrams)
-    - [ACDP Architecture Diagram](#acdp-architecture-diagram)
-    - [ACDP Deployment Sequence Diagram](#acdp-deployment-sequence-diagram)
-    - [Module Deployment Sequence Diagram](#module-deployment-sequence-diagram)
   - [CMS Modules](#cms-modules)
   - [Deployment Prerequisites](#deployment-prerequisites)
     - [Clone the Repository](#clone-the-repository)
@@ -41,15 +38,11 @@ navigate to the [AWS Solution Page](https://aws.amazon.com/solutions/implementat
     - [Build the Solution's Modules](#build-the-solutions-modules)
     - [Upload Assets to S3](#upload-assets-to-s3)
     - [Deploy on AWS](#deploy-on-aws)
-    - [Monitoring the ACDP Deployment](#monitoring-the-acdp-deployment)
     - [Module Dependencies](#module-dependencies)
-      - [ACDP Deployment Order](#acdp-deployment-order)
       - [CMS Module Deployment Order](#cms-module-deployment-order)
         - [Deployment Order Diagram](#deployment-order-diagram)
       - [Functional Dependencies](#functional-dependencies)
         - [Functional Dependency Diagram](#functional-dependency-diagram)
-    - [Deploy CMS Modules via Backstage](#deploy-cms-modules-via-backstage)
-      - [Example Module Deployment via Backstage](#example-module-deployment-via-backstage)
   - [Cost Scaling](#cost-scaling)
   - [Collection of Operational Metrics](#collection-of-operational-metrics)
   - [Uninstall the Solution](#uninstall-the-solution)
@@ -59,7 +52,6 @@ navigate to the [AWS Solution Page](https://aws.amazon.com/solutions/implementat
       - [Node](#node)
     - [Logging](#logging)
       - [Lambda Functions](#lambda-functions)
-      - [Backstage Logs](#backstage-logs)
     - [Pre-Commit Hooks](#pre-commit-hooks)
     - [Unit Test](#unit-test)
   - [License](#license)
@@ -72,7 +64,7 @@ AWS Cloud, manage and orchestrate CMS on AWS deployments from a centralized
 developer platform, securely authenticate and authorize users and services,
 onboard vehicles into AWS IoT Core, create vehicle profiles for storing data
 about registered vehicles, capture and store telemetry data emitted from
-registered vehicles, and consume data from FleetWise campaigns. Additionally
+registered vehicles, and consume data from FleetWise campaigns. Additionally,
 it provides capabilities to query stored vehicle data, create alerts and subscribe
 to notifications based on data thresholds, visualize vehicle telemetry data through
 a provided dashboard, and simulate connected vehicle data.
@@ -83,24 +75,10 @@ solution page.
 
 ## Architecture Diagrams
 
-### ACDP Architecture Diagram
-
-![ACDP Architecture Diagram](./source/modules/acdp/documentation/architecture/cms-acdp-deployment-diagram.svg)
-
-### ACDP Deployment Sequence Diagram
-
-![ACDP Deployment Sequence Diagram](./source/modules/acdp/documentation/sequence/cms-acdp-deployment-sequence-diagram.svg)
-
-### Module Deployment Sequence Diagram
-
-![Module Deployment Sequence Diagram](./source/modules/backstage/documentation/sequence/cms-module-deployment-sequence-diagram.svg)
-
 ## CMS Modules
 
 For detailed information visit the modules' README
 
-- [ACDP](./source/modules/acdp/README.md)
-  - [Backstage](./source/modules/backstage/README.md)
 - [Alerts](./source/modules/cms_alerts/README.md)
 - [API](./source/modules/cms_api/README.md)
 - [Auth](./source/modules/cms_auth/README.md)
@@ -119,8 +97,8 @@ If you have not done so, first clone the repository, and then `cd` into the crea
 already cloned the repository, ensure you still `cd` into the solution's directory.
 
 ```bash
-git clone https://github.com/aws-solutions/connected-mobility-solution-on-aws.git
-cd connected-mobility-solution-on-aws/
+git clone https://github.com/aws-samples/sample-connected-mobility-solution-on-aws.git
+cd sample-connected-mobility-solution-on-aws/
 ```
 
 > **WARNING:** If you do not `cd` into the solution's directory before installing tools,
@@ -262,12 +240,11 @@ make verify-required-tools
 Some of the modules may need certain manual steps. Here is the list of modules which requires manual steps.
 Please refer to module READMEs for instructions.
 
-- [ACDP](#create-an-amazon-route-53-hosted-zone)
 - [CMS Predictive Maintenance](./source/modules/cms_predictive_maintenance/README.md/#manual-steps)
 
 #### Create an Amazon Route 53 Hosted Zone
 
-To deploy ACDP, either an Amazon Route53 Hosted Zone or external DNS provider is required to be setup in your account.
+Either an Amazon Route53 Hosted Zone or external DNS provider is required to be setup in your account.
 When using Route53, you can either use a Public or Private Hosted Zone, but if you use private,
 you must manually configure a TLS Certificate in ACM.
 You will provide the Route53 Hosted Zone ID and a fully qualified domain name for this
@@ -319,7 +296,7 @@ Ensure you've followed the steps in the previous [deployment prerequisites](#dep
 ### Build the Solution's Modules
 
 The build target builds required assets (e.g. packaged lambdas) and creates the AWS CloudFormation templates for all
-modules. It then consolidates all module assets into the root deployment directory and creates the Backstage assets zip.
+modules. It then consolidates all module assets into the root deployment directory.
 
 ```bash
 make build
@@ -328,7 +305,6 @@ make build
 ### Upload Assets to S3
 
 The upload target creates the necessary buckets for, and uploads, the global and regional assets.
-It also uploads the Backstage assets zip.
 
 ```bash
 make upload
@@ -336,20 +312,11 @@ make upload
 
 ### Deploy on AWS
 
-The deploy target deploys all CMS modules, including ACDP, in an enforced order.
+The deploy target deploys all CMS modules in an enforced order.
 
 ```bash
 make deploy
 ```
-
-### Monitoring the ACDP Deployment
-
-After the CDK deployment is completed, browse to [CodePipeline](https://console.aws.amazon.com/codesuite/codepipeline/pipelines)
-in the AWS Management Console and verify that the "acdp-backstage-pipeline" execution completes successfully.
-
-![Successful CodePipeline Execution](./documentation/images/readme/acdp-backstage-pipeline-success.png)
-
-After the pipeline has completed, the deployment can be considered successfully complete and Backstage is ready for use.
 
 ### Module Dependencies
 
@@ -357,17 +324,6 @@ It is worth noting that many dependencies, be it deployment or functional, can b
 the specified module, such as manually creating/providing SSM Parameters, or any other required resources and their
 respective functionality. Details for how to accomplish this will vary by module and dependency, and are best understood
 by reviewing the source code for the modules under question.
-
-#### ACDP Deployment Order
-
-The ACDP deployment is dependent on the VPC and Auth Setup deployments, since it uses them as its own VPC and IdP
-configuration. These deployments can be separate from the configuration deployments used to configure further CMS
-module deployments.
-
-> **NOTE:** Backstage currently only support the usage of `cms` as the AppUniqueId when deploying from Backstage.
-> Since AppUniqueId must be unique per module deployment, to utilize a separate deployment of VPC or Auth Setup for
-> ACDP and CMS module deployments, the VPC and Auth Setup deployments used by ACDP must specify an AppUniqueId other
-> than `cms`.
 
 #### CMS Module Deployment Order
 
@@ -388,31 +344,6 @@ CMS Modules also have functional dependencies that do not inherently align with 
 ##### Functional Dependency Diagram
 
 ![CMS Functional Dependency Diagram](./documentation/dependencies/cms-functional-dependencies.svg)
-
-### Deploy CMS Modules via Backstage
-
-#### Example Module Deployment via Backstage
-
-The following instructions detail how to deploy the CMS Vehicle Simulator module.
-The same steps can be applied to other modules as well by replacing the URLs and names.
-
-1. Navigate to the Backstage URL in a web browser (FULLY_QUALIFIED_DOMAIN_NAME that was specified during deployment).
-1. Sign in to Backstage using the identity provider of choice, configurd via the Auth Setup module and IdentityProviderId.
-1. On Backstage, navigate to the `Create` page available from the `Catalog` menu in the side bar.
-   Select the `CHOOSE` button on the `CMS Vehicle Simulator` card.
-   ![Vehicle Simulator Choose Card](./documentation/images/readme/backstage-choose-vehicle-sim-card.png)
-
-1. Fill in the form as required by the Vehicle Simulator template and click the `Next` button and then the `Review` button.
-   ![Vehicle Simulator Form Page 1](./documentation/images/readme/backstage-vehicle-simulator-form-page-1.png)
-   ![Vehicle Simulator Form Page 2](./documentation/images/readme/backstage-vehicle-simulator-form-page-2.png)
-
-1. Click the `Create` button.
-
-   ![Vehicle Simulator Form Confirmation](./documentation/images/readme/backstage-vehicle-simulator-form-confirm.png)
-
-1. Monitor the deployment and ensure that the Vehicle Simulator module deploys successfully.
-
-   ![Vehicle Simulator Deployment Successful](./documentation/images/readme/backstage-vehicle-simulator-deployment-success.png)
 
 ## Cost Scaling
 
@@ -435,7 +366,6 @@ how to disable this capability, please see the
     This is used to look for any resources not destroyed by CloudFormation after teardown completes
 
     ```bash
-    make get-acdp-deployment-uuid
     make get-cms-deployment-uuid
     ```
 
@@ -451,16 +381,6 @@ how to disable this capability, please see the
    make destroy
    ```
 
-    > **NOTE:** Backstage might fail to delete due to the ACM certificate creation custom resource.
-    After delete fails, click delete again and select retain on the custom resource.
-    This will not leave any resources in the account.
-
-    ![Delete Backstage with Cert Error](documentation/images/readme/delete-backstage-on-cert-error.png)
-
-1. Delete the Backstage ACM Certificate (optional)
-
-   Navigate to Amazon Certificate Manager, and delete the Backstage certificate.
-
 1. Manually cleanup the following resources:
 
    - S3 buckets
@@ -471,7 +391,7 @@ how to disable this capability, please see the
    Locate the leftover resources using the following command which first requires you to export the `DEPLOYMENT_UUID`
    variable using each of the values previously acquired from AWS Systems Manager.
 
-   If you tore down the ACDP stack without capturing the UUIDs, the below command can be run by removing
+   If you tore down the stack without capturing the UUIDs, the below command can be run by removing
    the `Solutions:DeploymentUUID` Key filter, however the results will include other CMS on AWS stacks if they exist,
    so use this method with caution.
 
@@ -556,15 +476,6 @@ POWERTOOLS_LOGGER_LOG_EVENT="true"
 
 For other logging options and methods for enabling event logging,
 see the [AWS Lambda Powertools documentation](https://docs.powertools.aws.dev/lambda/python/latest/core/logger/).
-
-#### Backstage Logs
-
-By default, the solution's deployment instructions deploy the ACDP and Backstage with a log level of "INFO".
-To enable debug logs for Backstage, change the following environment variable when you deploy the solution:
-
-```bash
-export BACKSTAGE_LOG_LEVEL="debug"
-```
 
 ### Pre-Commit Hooks
 

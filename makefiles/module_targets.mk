@@ -101,14 +101,6 @@ print-module-name: ## Used to get module name safely from any directory if used 
 version: ## Display module name and current version
 	@printf "%b%35.35s%b version:%b%s%b\n" $$( [[ "${MODULE_PATH}" = *"lib"* ]] && echo "${YELLOW}" || echo "${CYAN}" ) "${MODULE_NAME}" "${NC}" "${GREEN}" "${MODULE_VERSION}" "${NC}"
 
-.PHONY: get-acdp-deployment-uuid
-get-acdp-deployment-uuid: ## Retrieves the deployment-uuid value from the SSM parameter in your AWS account.
-ifeq (, $(shell which aws))
-	$(error The aws CLI is required, as specified in the README. Please see the following link for installation: https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)
-endif
-	@printf "%bRetrieving ACDP Deplyoment UUID.%b\n" "${MAGENTA}" "${NC}"
-	aws ssm get-parameter --name=/solution/${ACDP_UNIQUE_ID}/config/deployment-uuid --query Parameter.Value --output text
-
 .PHONY: get-cms-deployment-uuid
 get-cms-deployment-uuid: ## Retrieves the deployment-uuid value from the SSM parameter in your AWS account.
 ifeq (, $(shell which aws))

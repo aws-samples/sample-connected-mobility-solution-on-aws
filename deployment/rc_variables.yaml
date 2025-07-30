@@ -2,7 +2,7 @@ cmsrc:
   - name: ADMIN_USER_EMAIL
     required: true
     default: null
-    description: "The email for admin user created for ACDP and Vehicle Simulator."
+    description: "The email for admin user created for Vehicle Simulator."
   - name: VPC_NAME
     required: true
     default: "cms"
@@ -27,14 +27,6 @@ cmsrc:
     required: true
     default: "true"
     description: "Flag to determine if the deployment should be public facing."
-  - name: USE_BACKSTAGE_AUTH_REDIRECT_FLOW
-    required: true
-    default: "true"
-    description: "Flag to enable Backstage authentication redirect flow."
-  - name: BACKSTAGE_ADDITIONAL_SCOPES
-    required: false
-    default: null
-    description: "Additional OAuth scopes for Backstage authentication. Enter as space delimited list (scope-1 scope-2)."
   - name: SHOULD_CREATE_COGNITO_RESOURCES
     required: true
     default: "true"
@@ -43,14 +35,6 @@ cmsrc:
     required: true
     default: "true"
     description: "Flag to determine if Cognito user should be created."
-  - name: BACKSTAGE_NAME
-    required: true
-    default: "Default Name"
-    description: "The name to be used for the Backstage instance."
-  - name: BACKSTAGE_ORG
-    required: true
-    default: "Default Org"
-    description: "The organization name for Backstage configuration."
   - name: LOG_BUCKET_RETENTION_DAYS
     required: true
     default: "90"
@@ -73,23 +57,11 @@ marc:
     required: false
     default: null
     description: "The AWS Organizations ID."
-  - name: ACDP_AWS_ACCOUNT_ID
-    required: false
-    default: null
-    description: "The AWS account ID of the account where ACDP is deployed."
   - name: OU_ID_LIST
     required: false
     default: null
     description: "List of AWS Organization Unit IDs that you want to enroll in Multi Account Deployment. Enter as comma delimited list (ou-id-1,ou-id-2)"
-  - name: ALLOWED_REGIONS
-    required: false
-    default: null
-    description: "List of AWS regions where you want to allow deployment through Backstage. Enter as comma delimited list (us-east-1,us-east-2)"
   - name: PRIVATE_ASSETS_BUCKET_NAME
     required: false
     default: null
     description: "Name of the S3 bucket where private assets are stored."
-  - name: ACDP_DEPLOYMENT_REGION
-    required: false
-    default: null
-    description: "AWS region where ACDP is deployed."
